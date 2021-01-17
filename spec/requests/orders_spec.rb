@@ -26,10 +26,10 @@ RSpec.describe 'Orders API', type: :request do
             expect(json['status']).to eq('open')
             expect(json['event_id']).to eq(@event.id)
             expect(json['tickets_amount']).to eq(@order.tickets_amount)
-            expect(json['expires_at']).to eq(JSON.parse(@expires_at.to_json))
+            expect(json['expires_at']).to eq(JSON.parse(@order.expires_at.to_json))
           end
           it 'expires in less than 15 minutes' do
-            expires_at = Time.zone.parse(json['expires_at'])
+            expires_at = Time.zone.parse.(json['expires_at'])
             time_left = expires_at - Time.now
             expect(time_left > 0 && time_left < 900).to eq true
           end

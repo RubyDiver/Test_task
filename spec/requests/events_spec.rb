@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+require 'request_spec_helper'
+
 RSpec.describe 'Events API', type: :request do
   describe 'GET requests' do
     context '/events' do
@@ -7,7 +9,7 @@ RSpec.describe 'Events API', type: :request do
         context 'When a few events exist' do
           before(:each) do
             @events = create_list(:event, 10)
-            get "/api/v1/events"
+            get "/api/v1/events/"
           end
           it 'respond with 200 and enought amount of events' do
             expect(response).to have_http_status(200)
