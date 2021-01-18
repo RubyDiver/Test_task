@@ -1,6 +1,6 @@
 require 'rails_helper'
-
-require 'request_spec_helper'
+require 'exceptions'
+require 'support/request_spec_helper'
 
 RSpec.describe 'Events API', type: :request do
   describe 'GET requests' do
@@ -39,7 +39,7 @@ RSpec.describe 'Events API', type: :request do
             expect(response).to have_http_status(200)
             expect(json).not_to be_empty
             expect(json['id']).to eq(@event.id)
-            expect(json['ticket_total']).to eq(@event.tickets_total)
+            expect(json['tickets_total']).to eq(@event.tickets_total)
           end
         end
 

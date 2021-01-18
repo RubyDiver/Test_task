@@ -21,7 +21,7 @@ class Api::V1::EventsController < ApplicationController
         render json: order.errors.full_messages.to_json, status: 500
       end
     else
-      raise StandardError, "Event is already over"
+      raise StandardError, "Event is over"
     end
   end
 end

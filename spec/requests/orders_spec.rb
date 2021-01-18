@@ -1,12 +1,14 @@
 require 'rails_helper'
+require 'exceptions'
+require 'support/request_spec_helper'
 
 RSpec.describe 'Orders API', type: :request do
   describe 'GET requests' do
     context '/orders' do
       context 'all:' do
-        it 'responds with 404' do
+        it 'responds with 406' do
           get "/api/v1/orders/"
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(406)
         end
       end
 
@@ -29,7 +31,7 @@ RSpec.describe 'Orders API', type: :request do
             expect(json['expires_at']).to eq(JSON.parse(@order.expires_at.to_json))
           end
           it 'expires in less than 15 minutes' do
-            expires_at = Time.zone.parse.(json['expires_at'])
+            expires_at = Time.zone.parse(json['expires_at'])
             time_left = expires_at - Time.now
             expect(time_left > 0 && time_left < 900).to eq true
           end
