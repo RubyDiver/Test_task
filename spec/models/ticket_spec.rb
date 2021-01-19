@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
+
+  it { should belong_to(:order)}
+
+  it { should validate_presence_of(:key)}
+  it { should validate_presence_of(:order_id)}
+
   before(:each) do
     event = create(:event)
     order = build(:order)

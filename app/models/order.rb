@@ -77,10 +77,8 @@ class Order < ApplicationRecord
 
       case action
       when :reserve
-        # to reserve tickets add to event's sold tickets
         event.tickets_sold += self.tickets_amount
       when :restore
-        # to restore tickets substract from event's sold tickets
         event.tickets_sold -= self.tickets_amount
       end
 

@@ -45,7 +45,7 @@ RSpec.describe 'Pays API', type: :request do
             expect(response.body).to match(/Order is already closed/)
           end
         end
-        context 'reservation expired / no such order' do
+        context 'reservation expired' do
           before(:each) do
             post "/api/v1/orders/#{2}/pay/ok"
           end
